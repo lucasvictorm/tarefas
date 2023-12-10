@@ -63,6 +63,7 @@
     "mime-types": "^2.1.35",
     "minimatch": "^3.1.2",
     "ms": "^2.0.0",
+    "mysql2": "^3.6.5",
     "negotiator": "^0.6.3",
     "node": "^21.2.0",
     "node-bin-setup": "^1.1.3",

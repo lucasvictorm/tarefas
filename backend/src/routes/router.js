@@ -1,9 +1,9 @@
 const express = require('express');
+const loginRouter = require('./loginRouter.js');
+
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send('Salve')
-});
+router.use('/login', loginRouter);
 
 module.exports = router;
