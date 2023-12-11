@@ -93,18 +93,35 @@ main{
     margin: 2em 0;
 }
 
-.task{
+.box-tasks .task{
     display: flex;
     width: 100%;
     gap: 1em;
     align-items: center;
-    border-radius: 6px;
-    border: 1px solid black;
+    border: 1px solid rgb(79, 79, 79);
+    border-top: none;
     padding: 1em 1.5em;
 }
 
+
+.box-tasks .task:last-child{
+    border-radius: 0 0 6px 6px;
+    border: 1px solid rgb(79, 79, 79);
+    border-top: none;
+}
+
+.box-tasks .task:nth-child(1){
+    border-radius: 6px 6px 0 0;
+    border: 1px solid rgb(79, 79, 79);
+    
+}
 .task p{
     width: 100%;
     
+}
+
+.task button{
+    background-color: #ffffff;
+    border: none;
 }
 
