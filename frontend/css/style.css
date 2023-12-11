@@ -1,3 +1,83 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+:root{
+    --cor-principal: #057dd9;
+}
+
+body{
+    
+    font-family: Arial, Helvetica, sans-serif;
+  
+}
+
+header{
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(22, 22, 22);
+    padding: 1em 2em;
+    box-shadow: -3px -3px 10px rgb(28, 28, 28)
+
+}
+
+header div:nth-child(1){
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    font-family: 'Josefin Sans', sans-serif;
+    
+}
+
+#logout-div{
+    display: flex;
+    align-items: center;
+}
+
+#logout-div span:nth-child(1){
+    font-size: 2em;
+}
+
+#logout-div span:nth-child(2){
+    font-size: 1.3em;
+}
+
+main{
+    
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1em 2em;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.add-form{
+    display: flex;
+    width: 100%;
+}
+
+.add-form input{
+    padding: 1.5em;
+    width: 100%;
+    outline: none;
+}
+
+.add-form button{
+    width: 60px;
+    height: 60px;
+    background-color: var(--cor-principal);
+    color: white;
+    border: none;
+   
+}
+
