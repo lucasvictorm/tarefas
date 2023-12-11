@@ -43,6 +43,8 @@ const cadastrar = async (event) => {
         return;
     }
 
+    sessionStorage.setItem('username', name.value)
+
     window.location.href = '../index.html'
 }
 
