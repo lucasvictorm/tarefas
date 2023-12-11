@@ -6,7 +6,7 @@ class LoginService{
         const {username, password} = body;
 
         const userId = await loginModel.login(username, password);
-
+        
         return userId;
 
 
