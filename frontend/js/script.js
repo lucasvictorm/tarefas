@@ -27,28 +27,47 @@ async function loadTasks(){
     const id = sessionStorage.getItem('id');
     const tasks = await fetchGetTasks(id);
     tasks.map((task) => {
-        console.log(task.task_name)
+        createTaskDiv(task);
     })
 }
 
 function createElement(element, text = '', html = ''){
-    element.createElement(element);
+    const tag = document.createElement(element);
 
     if(text){
-        element.innerText = text;
+        tag.innerText = text;
     }
 
     if(html){
-        element.innerHTML = text;
+        tag.innerHTML = html;
     }
     
-    return element;
+    return tag;
 }
 
-function createTaskDiv(taskName){
-    const tagP =  createElement('p', taskName);
-    const buttonEdit = createElement(button, '',  `<span class="material-symbols-outlined">
-    delete
+function createTaskDiv(task){
+    const {task_name, task_id} = task
+    const boxTasks = document.querySelector('.box-tasks');
+    const taskDiv = createElement('div');
+    taskDiv.classList.add('task')
+    const tagP =  createElement('p', task_name);
+    const buttonEdit = createElement('button', '',  `<span class="material-symbols-outlined">
+    edit
 </span>`)
+    const buttonDelete = createElement('button', '',  `<span class="material-symbols-outlined">
+    delete
+
+</span>`)
+    const buttonDone = createElement('button', '',  `<span class="material-symbols-outlined">
+    done
+</span>`)
+
+    taskDiv.appendChild(tagP);
+    taskDiv.appendChild(buttonEdit)
+    taskDiv.appendChild(buttonDelete)
+    taskDiv.appendChild(buttonDone)
+    boxTasks.appendChild(taskDiv)
     
 }
+
+
