@@ -8,7 +8,10 @@ class LoginModel{
     }
 
     async createLogin(username, password, name){
-        const [user] = await mysql.execute('INSERT INTO users (user_username, user_password, user_name) VALUES(?, ?, ?)', [username, password, name])
+        await mysql.execute('INSERT INTO users (user_username, user_password, user_name) VALUES(?, ?, ?)', [username, password, name])
+
+        const [userInfo] = await mysql.execute('SELECT user_id from users WHERE user_username=?', [username]);
+        const user = userInfo[0]
 
         return user;
 

@@ -14,12 +14,12 @@ class controllerLogin {
         }else{
             return res.status(200).json({message: "Usuário e/ou senha inválidos."})
         }
-        
     }
     
     async createLogin(req, res){
-        loginService.createLogin(req.body)
-        return res.status(201).send({message: 'Usuário criado com sucesso.'})
+        const user = await loginService.createLogin(req.body)
+        console.log(user)
+        return res.status(201).send({message: 'Usuário criado com sucesso.', user})
     }
 
 }

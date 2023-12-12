@@ -44,6 +44,7 @@ const cadastrar = async (event) => {
     }
 
     sessionStorage.setItem('username', name.value)
+    sessionStorage.setItem('id', login.user.user_id)
 
     window.location.href = '../index.html'
 }
