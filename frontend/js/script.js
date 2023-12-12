@@ -4,9 +4,10 @@ if(!sessionStorage.getItem('username')){
 
 const usernameTitle = document.getElementById('welcome-name');
 usernameTitle.innerText = sessionStorage.getItem('username')
+window.onload = () => {loadTasks()};
 
 const body = document.querySelector('body');
-//body.addEventListener('load', loadtasks);
+
 
 async function fetchGetTasks(id){
     let tasks = {} 
@@ -24,7 +25,30 @@ async function fetchGetTasks(id){
 
 async function loadTasks(){
     const id = sessionStorage.getItem('id');
-    await fetchGetTasks(id)
+    const tasks = await fetchGetTasks(id);
+    tasks.map((task) => {
+        console.log(task.task_name)
+    })
 }
 
-loadTasks()
+function createElement(element, text = '', html = ''){
+    element.createElement(element);
+
+    if(text){
+        element.innerText = text;
+    }
+
+    if(html){
+        element.innerHTML = text;
+    }
+    
+    return element;
+}
+
+function createTaskDiv(taskName){
+    const tagP =  createElement('p', taskName);
+    const buttonEdit = createElement(button, '',  `<span class="material-symbols-outlined">
+    delete
+</span>`)
+    
+}

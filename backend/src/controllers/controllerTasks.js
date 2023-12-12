@@ -6,7 +6,7 @@ class Tasks{
         
         const tasks = await tasksService.getTasks(id)
         
-        return res.status(200).json({tasks});
+        return res.status(200).json(tasks);
     }
 }
 
