@@ -12,7 +12,7 @@ class LoginModel{
 
         const [userInfo] = await mysql.execute('SELECT user_id from users WHERE user_username=?', [username]);
         const user = userInfo[0]
-
+        
         return user;
 
 
