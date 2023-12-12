@@ -33,12 +33,13 @@ header div:nth-child(1){
     width: 100%;
     max-width: 600px;
     font-family: 'Josefin Sans', sans-serif;
-    
+    padding: 0 1.8em;
 }
 
 #logout-div{
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 #logout-div span:nth-child(1){
@@ -131,5 +132,6 @@ main{
 .task button{
     background-color: #ffffff;
     border: none;
+    cursor: pointer;
 }
 

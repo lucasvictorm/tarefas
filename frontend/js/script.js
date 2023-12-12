@@ -1,9 +1,14 @@
 if(!sessionStorage.getItem('username')){
     window.location.href = './pages/login.html'
 }
-
 const usernameTitle = document.getElementById('welcome-name');
 usernameTitle.innerText = sessionStorage.getItem('username')
+
+const logoutDiv = document.querySelector('#logout-div');
+logoutDiv.addEventListener('click', () => {
+    sessionStorage.removeItem('username')
+    location.reload();
+})
 window.onload = () => {loadTasks()};
 
 const body = document.querySelector('body');
