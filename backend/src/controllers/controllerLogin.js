@@ -10,7 +10,7 @@ class controllerLogin {
         if(user){
             logged = true
             
-            return res.status(201).json({user, logged})
+            return res.status(200).json({user, logged})
         }else{
             return res.status(200).json({message: "Usuário e/ou senha inválidos."})
         }

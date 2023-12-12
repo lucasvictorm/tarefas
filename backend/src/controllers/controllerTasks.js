@@ -8,6 +8,14 @@ class Tasks{
         
         return res.status(200).json(tasks);
     }
+
+    async createTask(req, res){
+        const body = req.body;
+        
+        await tasksService.createTask(body)
+        
+        return res.status(201).json({message: 'Tarefa criada com sucesso'});
+    }
 }
 
 module.exports = new Tasks
