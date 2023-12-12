@@ -12,6 +12,13 @@ logoutDiv.addEventListener('click', () => {
 })
 
 const addForm = document.querySelector('.add-form');
+addForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const task_name = document.getElementById('task-input');
+    await createTask(task_name.value)
+    task_name.value = ''
+
+})
 
 
 async function fetchGetTasks(id){
@@ -56,10 +63,17 @@ function createTaskDiv(task){
     const boxTasks = document.querySelector('.box-tasks');
     const taskDiv = createElement('div');
     taskDiv.classList.add('task')
+
+    const divTaskName = createElement('div');
+    divTaskName.classList.add('div-task-name')
+
+    const divTaskButtons = createElement('div');
+    divTaskButtons.classList.add('div-task-buttons')
     const tagP =  createElement('p', task_name);
     const buttonEdit = createElement('button', '',  `<span class="material-symbols-outlined">
     edit
 </span>`)
+    buttonEdit.addEventListener('click', () => {editTask(divTaskName ,task_name)})
     const buttonDelete = createElement('button', '',  `<span class="material-symbols-outlined">
     delete
 
@@ -67,11 +81,14 @@ function createTaskDiv(task){
     const buttonDone = createElement('button', '',  `<span class="material-symbols-outlined">
     done
 </span>`)
+    divTaskName.appendChild(tagP);
+    divTaskButtons.appendChild(buttonEdit)
+    divTaskButtons.appendChild(buttonDelete)
+    divTaskButtons.appendChild(buttonDone)
 
-    taskDiv.appendChild(tagP);
-    taskDiv.appendChild(buttonEdit)
-    taskDiv.appendChild(buttonDelete)
-    taskDiv.appendChild(buttonDone)
+    taskDiv.appendChild(divTaskName);
+    taskDiv.appendChild(divTaskButtons)
+    
     boxTasks.appendChild(taskDiv)
     
 }
@@ -84,9 +101,9 @@ async function createTask(task_name){
    
     const date = new Date(Date.now()).toUTCString();
     const task_date = new Date(date).toLocaleString('pt-br', options)
-    const task_id = sessionStorage.getItem('id');
+    const task_user = sessionStorage.getItem('id');
     
-    const task = {task_name, task_date, task_id}
+    const task = {task_name, task_date, task_user}
     await fetch('http://localhost:3000/tasks', {
         method: 'post',
         headers: {
@@ -96,4 +113,22 @@ async function createTask(task_name){
     })
 
     loadTasks()
+}
+
+async function fetchUpdateTask(body, id){
+    await fetch(`http://localhost:3000/tasks/${id}`, {
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    })
+}
+
+async function editTask(divTaskName, text){
+    divTaskName.innerHTML = ''
+    const taskNameInput = createElement('input')
+    taskNameInput.value = text;
+    divTaskName.appendChild(taskNameInput);
+    taskNameInput.focus()
 }

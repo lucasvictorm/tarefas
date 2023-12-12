@@ -124,9 +124,26 @@ main{
     border: 1px solid rgb(79, 79, 79);
     
 }
-.task p{
+
+.div-task-name{
     width: 100%;
+}
+
+.div-task-name p{
+    width: 100%;
+}
+
+.div-task-buttons{
+    display: flex;
+    gap: 1em;
+}
+
+.div-task-name input{
     
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1em;
 }
 
 .task button{

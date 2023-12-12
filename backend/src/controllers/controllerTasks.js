@@ -16,6 +16,15 @@ class Tasks{
         
         return res.status(201).json({message: 'Tarefa criada com sucesso'});
     }
+
+    async updateTask(req, res){
+        const body = req.body;
+        body.task_id = req.params.id;
+        console.log(body);
+        await tasksService.updateTask(body);
+        
+        return res.status(201).json({message: 'Tarefa criada com sucesso'});
+    }
 }
 
 module.exports = new Tasks

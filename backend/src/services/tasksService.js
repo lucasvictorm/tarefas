@@ -7,8 +7,14 @@ class TasksService{
     }
 
     async createTask(body){
-        const {task_name, task_date, task_user} = body
+        const {task_name, task_date, task_user} = body;
         const task = await tasksModel.createTask(task_name, task_date, task_user);
+        return task;
+    }
+
+    async updateTask(body){
+        const {task_name, task_status ,task_id} = body;
+        const task = await tasksModel.updateTask(task_name, task_status, task_id);
         return task;
     }
 }
