@@ -1,3 +1,4 @@
+window.onload = () => {loadTasks()};
 if(!sessionStorage.getItem('username')){
     window.location.href = './pages/login.html'
 }
@@ -9,9 +10,8 @@ logoutDiv.addEventListener('click', () => {
     sessionStorage.removeItem('username')
     location.reload();
 })
-window.onload = () => {loadTasks()};
 
-const body = document.querySelector('body');
+const addForm = document.querySelector('.add-form');
 
 
 async function fetchGetTasks(id){
@@ -24,11 +24,12 @@ async function fetchGetTasks(id){
         tasks = data
     })
     .catch(err => console.log(err))
-    console.log(tasks)
     return tasks;
 }
 
 async function loadTasks(){
+    const boxTasks = document.querySelector('.box-tasks');
+    boxTasks.innerHTML = ''
     const id = sessionStorage.getItem('id');
     const tasks = await fetchGetTasks(id);
     tasks.map((task) => {
@@ -75,4 +76,24 @@ function createTaskDiv(task){
     
 }
 
+async function createTask(task_name){
+    const options = {
+        dateStyle: 'long',
+        timeStyle: 'short',
+    }
+   
+    const date = new Date(Date.now()).toUTCString();
+    const task_date = new Date(date).toLocaleString('pt-br', options)
+    const task_id = sessionStorage.getItem('id');
+    
+    const task = {task_name, task_date, task_id}
+    await fetch('http://localhost:3000/tasks', {
+        method: 'post',
+        headers: {
+            'Content-Type': "application/json",
+        },
+        body: JSON.stringify(task)
+    })
 
+    loadTasks()
+}
