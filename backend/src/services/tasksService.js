@@ -7,4 +7,4 @@ class TasksService{
     }
 }
 
-module.exports = TasksService
+module.exports = new TasksService

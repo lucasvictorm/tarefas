@@ -61,6 +61,12 @@ main{
     align-items: center;
 }
 
+.section-welcome{
+    margin: 1em 0;
+    width: 100%;
+    max-width: 600px;
+}
+
 .add-form{
     display: flex;
     width: 100%;
@@ -105,13 +111,15 @@ main{
 
 
 .box-tasks .task:last-child{
-    border-radius: 0 0 6px 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
     border: 1px solid rgb(79, 79, 79);
     border-top: none;
 }
 
 .box-tasks .task:nth-child(1){
-    border-radius: 6px 6px 0 0;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
     border: 1px solid rgb(79, 79, 79);
     
 }

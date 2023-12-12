@@ -2,6 +2,6 @@
 const tasksRouter = require('express').Router()
 const controllerTasks = require('../controllers/controllerTasks');
 
-tasksRouter.get('/', controllerTasks.getTasks);
+tasksRouter.get('/:id', controllerTasks.getTasks);
 
 module.exports = tasksRouter
