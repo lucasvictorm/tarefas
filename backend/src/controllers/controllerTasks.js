@@ -1,7 +1,7 @@
 const tasksService = require('../services/tasksService');
 
 class Tasks{
-    async getTasks(req, res){
+    async getAllTasks(req, res){
         const id = req.params.id;
         
         const tasks = await tasksService.getTasks(id)
@@ -12,6 +12,13 @@ class Tasks{
     async getPendentTasks(req, res){
         const id = req.params.id;
         const tasks = await tasksService.getPendentTasks(id)
+        return res.status(200).json(tasks)
+
+    }
+
+    async getCompletedTasks(req, res){
+        const id = req.params.id;
+        const tasks = await tasksService.getCompletedTasks(id)
         return res.status(200).json(tasks)
 
     }

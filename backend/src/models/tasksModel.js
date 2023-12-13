@@ -1,7 +1,7 @@
 const mysql = require('./connection.js');
 
 class TasksModel{
-    async getTasks(id){
+    async getAllTasks(id){
         const [tasks] = await mysql.execute('SELECT * from tasks where task_user=?',[id]);
         
         return tasks;
@@ -9,6 +9,11 @@ class TasksModel{
 
     async getPendentTasks(id){
         const [tasks] = await mysql.execute('SELECT * from tasks where task_user=? AND task_status = "pendente"',[id]);
+        return tasks;
+    }
+
+    async getCompletedTasks(id){
+        const [tasks] = await mysql.execute('SELECT * from tasks where task_user=? AND task_status = "concluido"',[id]);
         return tasks;
     }
 

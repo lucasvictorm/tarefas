@@ -1,13 +1,18 @@
 const tasksModel = require('../models/tasksModel');
 
 class TasksService{
-    async getTasks(id){
+    async getAllTasks(id){
         const tasks = tasksModel.getTasks(id);
         return tasks;
     }
 
     async getPendentTasks(id){
         const tasks = await tasksModel.getPendentTasks(id);
+        return tasks;
+    }
+
+    async getCompletedTasks(id){
+        const tasks = await tasksModel.getCompletedTasks(id);
         return tasks;
     }
 
