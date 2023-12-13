@@ -14,14 +14,17 @@ const filterButtonsHTML = document.getElementsByClassName('filter-button')
 
 const filterButtons = [...filterButtonsHTML] 
 filterButtons[0].addEventListener('click', (event) => {
+    filterButtons.forEach(element => {element.classList.remove('active')})
     event.target.classList.add('active')
     loadTasks()
 })
 filterButtons[1].addEventListener('click', (event) => {
+    filterButtons.forEach(element => {element.classList.remove('active')})
     event.target.classList.add('active')
     loadTasks()
 })
 filterButtons[2].addEventListener('click', (event) => {
+    filterButtons.forEach(element => {element.classList.remove('active')})
     event.target.classList.add('active')
     loadTasks()
 })
@@ -70,10 +73,12 @@ async function loadTasks(){
     }
 
     if(filterButtons[1].classList.contains('active')){
-        tasks = await fetchGetTasks(id);
+        tasks = await fetchPendentTasks(id);
+       
+        
     }
 
-    
+   
    
     tasks.map((task) => {
         
@@ -226,8 +231,12 @@ async function deleteTask(id){
     loadTasks()
 }
 
-async function ShowPendentTasks(){
-    const tasks = await fetch(`http://localhost:3000/tasks/pendents/${id}`)
+async function fetchPendentTasks(id){
+    
+    const tasksPromise = await fetch(`http://localhost:3000/tasks/pendents/${id}`)
+    
+    const tasks = await tasksPromise.json();
+    
     return tasks
 }
 

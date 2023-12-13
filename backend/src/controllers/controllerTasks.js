@@ -12,7 +12,7 @@ class Tasks{
     async getPendentTasks(req, res){
         const id = req.params.id;
         const tasks = await tasksService.getPendentTasks(id)
-        return res.status(200).json({tasks})
+        return res.status(200).json(tasks)
 
     }
 

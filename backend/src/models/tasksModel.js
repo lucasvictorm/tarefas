@@ -9,7 +9,6 @@ class TasksModel{
 
     async getPendentTasks(id){
         const [tasks] = await mysql.execute('SELECT * from tasks where task_user=? AND task_status = "pendente"',[id]);
-        
         return tasks;
     }
 

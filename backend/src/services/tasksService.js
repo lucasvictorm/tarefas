@@ -7,7 +7,7 @@ class TasksService{
     }
 
     async getPendentTasks(id){
-        const tasks = tasksModel.getPendentTasks(id);
+        const tasks = await tasksModel.getPendentTasks(id);
         return tasks;
     }
 
