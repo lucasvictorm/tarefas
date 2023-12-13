@@ -6,6 +6,11 @@ class TasksService{
         return tasks;
     }
 
+    async getPendentTasks(id){
+        const tasks = tasksModel.getPendentTasks(id);
+        return tasks;
+    }
+
     async createTask(body){
         const {task_name, task_date, task_user} = body;
         const task = await tasksModel.createTask(task_name, task_date, task_user);

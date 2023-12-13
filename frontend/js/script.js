@@ -81,7 +81,7 @@ function createTaskDiv(task){
     const buttonDelete = createElement('button', '',  `<span class="material-symbols-outlined">delete</span>`)
     const buttonDone = createElement('button', '',  `<span class="material-symbols-outlined">done</span>`)
 
-    console.log(task_status)
+    
     if(task_status == 'concluido'){
         taskDiv.classList.add('checked')
     }

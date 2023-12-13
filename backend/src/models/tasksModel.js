@@ -7,6 +7,12 @@ class TasksModel{
         return tasks;
     }
 
+    async getPendentTasks(id){
+        const [tasks] = await mysql.execute('SELECT * from tasks where task_user=? AND task_status = "pendente"',[id]);
+        
+        return tasks;
+    }
+
     async createTask(task_name, task_date, task_user){
         const[task] = await mysql.execute('INSERT INTO tasks (task_name, task_date, task_status, task_user) VALUES (?, ?, ?, ?)', [task_name, task_date, 'pendente', task_user]);
         return task;
