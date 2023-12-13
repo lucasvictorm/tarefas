@@ -72,31 +72,26 @@ function createTaskDiv(task){
     const divTaskButtons = createElement('div');
     divTaskButtons.classList.add('div-task-buttons')
     const tagP =  createElement('p', task_name);
-    const buttonEdit = createElement('button', '',  `<span class="material-symbols-outlined">
-    edit
-</span>`)
-    
 
+    const buttonEdit = createElement('button', '',  `<span class="material-symbols-outlined">edit</span>`)
+    const buttonDelete = createElement('button', '',  `<span class="material-symbols-outlined">delete</span>`)
+    const buttonDone = createElement('button', '',  `<span class="material-symbols-outlined">done</span>`)
 
-    const buttonDelete = createElement('button', '',  `<span class="material-symbols-outlined">
-    delete
-
-</span>`)
-    const buttonDone = createElement('button', '',  `<span class="material-symbols-outlined">
-    done
-</span>`)
-
-buttonEdit.addEventListener('click', async () => {
+    buttonEdit.addEventListener('click', async () => {
     buttonDelete.style.display = 'none'
     buttonEdit.style.display = 'none'
     
     await editTask(divTaskName ,task_name, buttonDone, task_status, task_id)
     
-})
+    })
 
-buttonDelete.addEventListener('click', async () => {
+    buttonDelete.addEventListener('click', async () => {
     await deleteTask(task_id)
-})
+    })
+
+    buttonDone.addEventListener('click', ()=>{
+
+    })
 
     divTaskName.appendChild(tagP);
     divTaskButtons.appendChild(buttonEdit)
