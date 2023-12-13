@@ -129,10 +129,10 @@ function createTaskDiv(task){
 
 
     buttonEdit.addEventListener('click', async () => {
-    buttonDelete.style.display = 'none'
-    buttonEdit.style.display = 'none'
+        buttonDelete.style.display = 'none'
+        buttonEdit.style.display = 'none'
     
-    await editTask(divTaskName ,task_name, buttonDone, task_status, task_id)
+        await editTask(divTaskName ,task_name, buttonDone, task_status, task_id)
     
     })
 
@@ -140,7 +140,7 @@ function createTaskDiv(task){
     await deleteTask(task_id)
     })
 
-    buttonDone.addEventListener('click', async()=>{
+    buttonDone.addEventListener('click', async function doneHandler(){
         let newStatus = ''
         
         if(task_status == 'concluido'){
@@ -156,7 +156,6 @@ function createTaskDiv(task){
         loadTasks()
         
     })
-
 
 
     divTaskName.appendChild(tagP);
@@ -215,6 +214,7 @@ async function editTask(divTaskName, task_name, buttonDone, task_status, task_id
     taskNameInput.value = task_name;
     divTaskName.appendChild(taskNameInput);
     taskNameInput.focus()
+    buttonDone.removeEventListener('click', doneHandler())
 
     await buttonDone.addEventListener('click', async () => {
         const body = {
