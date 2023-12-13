@@ -37,13 +37,17 @@ async function fetchGetTasks(id){
 
 async function loadTasks(){
     const boxTasks = document.querySelector('.box-tasks');
+    const boxFilters = document.querySelector('.box-filters')
+    boxFilters.style.display = 'none'
     boxTasks.innerHTML = ''
     const id = sessionStorage.getItem('id');
     const tasks = await fetchGetTasks(id);
+   
     tasks.map((task) => {
         
         createTaskDiv(task);
     })
+    boxFilters.style.display = 'flex'
 }
 
 function createElement(element, text = '', html = ''){
@@ -77,6 +81,16 @@ function createTaskDiv(task){
     const buttonDelete = createElement('button', '',  `<span class="material-symbols-outlined">delete</span>`)
     const buttonDone = createElement('button', '',  `<span class="material-symbols-outlined">done</span>`)
 
+    console.log(task_status)
+    if(task_status == 'concluido'){
+        taskDiv.classList.add('checked')
+    }
+
+    if(task_status ==  'pendente'){
+        taskDiv.classList.remove('checked')
+    }
+
+
     buttonEdit.addEventListener('click', async () => {
     buttonDelete.style.display = 'none'
     buttonEdit.style.display = 'none'
@@ -89,9 +103,24 @@ function createTaskDiv(task){
     await deleteTask(task_id)
     })
 
-    buttonDone.addEventListener('click', ()=>{
+    buttonDone.addEventListener('click', async()=>{
+        let newStatus = ''
+        
+        if(task_status == 'concluido'){
+            newStatus = 'pendente'
+        }
 
+        if(task_status ==  'pendente'){
+            newStatus = 'concluido'
+        }
+        
+        const body = {task_name, task_status: newStatus}
+        await fetchUpdateTask(body, task_id)
+        loadTasks()
+        
     })
+
+
 
     divTaskName.appendChild(tagP);
     divTaskButtons.appendChild(buttonEdit)
@@ -163,4 +192,8 @@ async function editTask(divTaskName, task_name, buttonDone, task_status, task_id
 async function deleteTask(id){
     await fetchDeleteTask(id)
     loadTasks()
+}
+
+function checkTask(){
+    
 }

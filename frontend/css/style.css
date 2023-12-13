@@ -154,6 +154,21 @@ main{
     cursor: pointer;
 }
 
+
+.box-tasks .task.checked{
+    border-color: #767676;
+}
+
+.task.checked .div-task-name p{
+    text-decoration: line-through;
+    color: #767676;
+}
+
+.task.checked .div-task-buttons button{
+    color: #767676;
+}
+
+
 .section-tasks .box-filters{
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 6px;
