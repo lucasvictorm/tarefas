@@ -70,12 +70,12 @@ async function loadTasks(){
     const id = sessionStorage.getItem('id');
     if(filterButtons[0].classList.contains('active')){
         tasks = await fetchGetTasks(id);
-    }
 
-    if(filterButtons[1].classList.contains('active')){
+    } else if(filterButtons[1].classList.contains('active')){
         tasks = await fetchPendentTasks(id);
-       
-        
+
+    } else if(filterButtons[2].classList.contains('active')){
+        tasks = await fetchCompletedTasks(id);
     }
 
    
@@ -234,6 +234,15 @@ async function deleteTask(id){
 async function fetchPendentTasks(id){
     
     const tasksPromise = await fetch(`http://localhost:3000/tasks/pendents/${id}`)
+    
+    const tasks = await tasksPromise.json();
+    
+    return tasks
+}
+
+async function fetchCompletedTasks(id){
+    
+    const tasksPromise = await fetch(`http://localhost:3000/tasks/completed/${id}`)
     
     const tasks = await tasksPromise.json();
     

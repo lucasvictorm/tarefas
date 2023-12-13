@@ -4,7 +4,7 @@ class Tasks{
     async getAllTasks(req, res){
         const id = req.params.id;
         
-        const tasks = await tasksService.getTasks(id)
+        const tasks = await tasksService.getAllTasks(id)
         
         return res.status(200).json(tasks);
     }

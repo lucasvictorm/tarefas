@@ -2,7 +2,7 @@ const tasksModel = require('../models/tasksModel');
 
 class TasksService{
     async getAllTasks(id){
-        const tasks = tasksModel.getTasks(id);
+        const tasks = tasksModel.getAllTasks(id);
         return tasks;
     }
 
