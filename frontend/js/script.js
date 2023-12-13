@@ -4,6 +4,29 @@ if(!sessionStorage.getItem('username')){
 }
 const usernameTitle = document.getElementById('welcome-name');
 
+/*const showAllButton = document.getElementById('showAllButton')
+const showPendentsButton = document.getElementById('showPendentsButton')
+showPendentsButton.addEventListener('click', ()=>{
+    ShowPendentTasks()
+})*/
+
+const filterButtonsHTML = document.getElementsByClassName('filter-button')
+
+const filterButtons = [...filterButtonsHTML] 
+filterButtons[0].addEventListener('click', (event) => {
+    event.target.classList.add('active')
+    loadTasks()
+})
+filterButtons[1].addEventListener('click', (event) => {
+    event.target.classList.add('active')
+    loadTasks()
+})
+filterButtons[2].addEventListener('click', (event) => {
+    event.target.classList.add('active')
+    loadTasks()
+})
+
+
 usernameTitle.innerText = sessionStorage.getItem('username')
 
 const logoutDiv = document.querySelector('#logout-div');
@@ -38,10 +61,19 @@ async function fetchGetTasks(id){
 async function loadTasks(){
     const boxTasks = document.querySelector('.box-tasks');
     const boxFilters = document.querySelector('.box-filters')
+    let tasks;
     boxFilters.style.display = 'none'
     boxTasks.innerHTML = ''
     const id = sessionStorage.getItem('id');
-    const tasks = await fetchGetTasks(id);
+    if(filterButtons[0].classList.contains('active')){
+        tasks = await fetchGetTasks(id);
+    }
+
+    if(filterButtons[1].classList.contains('active')){
+        tasks = await fetchGetTasks(id);
+    }
+
+    
    
     tasks.map((task) => {
         
@@ -194,6 +226,8 @@ async function deleteTask(id){
     loadTasks()
 }
 
-function checkTask(){
-    
+async function ShowPendentTasks(){
+    const tasks = await fetch(`http://localhost:3000/tasks/pendents/${id}`)
+    return tasks
 }
+
