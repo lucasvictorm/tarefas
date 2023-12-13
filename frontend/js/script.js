@@ -3,6 +3,7 @@ if(!sessionStorage.getItem('username')){
     window.location.href = './pages/login.html'
 }
 const usernameTitle = document.getElementById('welcome-name');
+
 usernameTitle.innerText = sessionStorage.getItem('username')
 
 const logoutDiv = document.querySelector('#logout-div');
@@ -40,6 +41,7 @@ async function loadTasks(){
     const id = sessionStorage.getItem('id');
     const tasks = await fetchGetTasks(id);
     tasks.map((task) => {
+        
         createTaskDiv(task);
     })
 }
@@ -59,7 +61,7 @@ function createElement(element, text = '', html = ''){
 }
 
 function createTaskDiv(task){
-    const {task_name, task_id} = task
+    const {task_name, task_id, task_status} = task
     const boxTasks = document.querySelector('.box-tasks');
     const taskDiv = createElement('div');
     taskDiv.classList.add('task')
@@ -73,7 +75,9 @@ function createTaskDiv(task){
     const buttonEdit = createElement('button', '',  `<span class="material-symbols-outlined">
     edit
 </span>`)
-    buttonEdit.addEventListener('click', () => {editTask(divTaskName ,task_name)})
+    
+
+
     const buttonDelete = createElement('button', '',  `<span class="material-symbols-outlined">
     delete
 
@@ -81,6 +85,19 @@ function createTaskDiv(task){
     const buttonDone = createElement('button', '',  `<span class="material-symbols-outlined">
     done
 </span>`)
+
+buttonEdit.addEventListener('click', async () => {
+    buttonDelete.style.display = 'none'
+    buttonEdit.style.display = 'none'
+    
+    await editTask(divTaskName ,task_name, buttonDone, task_status, task_id)
+    
+})
+
+buttonDelete.addEventListener('click', async () => {
+    await deleteTask(task_id)
+})
+
     divTaskName.appendChild(tagP);
     divTaskButtons.appendChild(buttonEdit)
     divTaskButtons.appendChild(buttonDelete)
@@ -125,10 +142,30 @@ async function fetchUpdateTask(body, id){
     })
 }
 
-async function editTask(divTaskName, text){
+async function fetchDeleteTask(id){
+    await fetch(`http://localhost:3000/tasks/${id}`, {
+        method: 'delete',
+    })
+}
+
+async function editTask(divTaskName, task_name, buttonDone, task_status, task_id){
     divTaskName.innerHTML = ''
     const taskNameInput = createElement('input')
-    taskNameInput.value = text;
+    taskNameInput.value = task_name;
     divTaskName.appendChild(taskNameInput);
     taskNameInput.focus()
+
+    await buttonDone.addEventListener('click', async () => {
+        const body = {
+            task_name: taskNameInput.value,
+            task_status,
+        }
+        await fetchUpdateTask(body, task_id)
+        loadTasks()
+    })
+}
+
+async function deleteTask(id){
+    await fetchDeleteTask(id)
+    loadTasks()
 }

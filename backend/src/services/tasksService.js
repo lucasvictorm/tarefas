@@ -13,8 +13,13 @@ class TasksService{
     }
 
     async updateTask(body){
-        const {task_name, task_status ,task_id} = body;
+        const {task_name, task_status, task_id} = body;
         const task = await tasksModel.updateTask(task_name, task_status, task_id);
+        return task;
+    }
+
+    async deleteTask(task_id){
+        const task = await tasksModel.deleteTask(task_id);
         return task;
     }
 }

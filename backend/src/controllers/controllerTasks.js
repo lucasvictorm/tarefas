@@ -20,10 +20,19 @@ class Tasks{
     async updateTask(req, res){
         const body = req.body;
         body.task_id = req.params.id;
-        console.log(body);
+        
         await tasksService.updateTask(body);
         
-        return res.status(201).json({message: 'Tarefa criada com sucesso'});
+        return res.status(204).json({message: 'Tarefa atualizada'});
+    }
+
+    async deleteTask(req, res){
+        
+        const task_id = req.params.id;
+       
+        await tasksService.deleteTask(task_id);
+        
+        return res.status(204).json({message: 'Tarefa excluída'});
     }
 }
 

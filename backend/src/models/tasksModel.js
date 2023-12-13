@@ -16,6 +16,11 @@ class TasksModel{
         const[task] = await mysql.execute('UPDATE tasks SET task_name=?, task_status=? WHERE task_id=?', [task_name, task_status, task_id]);
         return task;
     }
+
+    async deleteTask(task_id){
+        const[task] = await mysql.execute('DELETE FROM tasks WHERE task_id=?', [task_id]);
+        return task;
+    }
 }
 
 module.exports = new TasksModel;

@@ -25,6 +25,18 @@ class tasksMiddleware{
         next()
 
     }
+
+    async verifyDelete(req, res, next){
+        
+        const id = req.params.id;
+
+        if(!id){
+            return res.status(400).json({message: 'Informações faltando.'})
+        }
+
+        next()
+
+    }
 }
 
 module.exports = new tasksMiddleware
