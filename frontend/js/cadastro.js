@@ -9,7 +9,7 @@ const errorMessage = (message) => {
 
 const fetchCadastro = async(username, password, name) => {
 
-    const response = await fetch('http://localhost:3000/login/',{
+    const response = await fetch('https://api-tarefas-rp0k.onrender.com/login/',{
        method: 'post',
        headers: {
            'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ const cadastrar = async (event) => {
     sessionStorage.setItem('username', name.value)
     sessionStorage.setItem('id', newUser.user.user_id)
 
-    window.location.href = '../index.html'
+    window.location.href = '../../index.html'
 }
 
 
