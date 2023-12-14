@@ -12,7 +12,7 @@ class TasksModel{
     }
 
     async getPendentTasks(id){
-        const tasks = await db.query('SELECT * from tasks where task_user=$1 AND task_status = "pendente"', { 
+        const tasks = await db.query("SELECT * from tasks where task_user=$1 AND task_status = 'pendente'", { 
             bind: [id],
             type: QueryTypes.SELECT
         });
@@ -20,7 +20,7 @@ class TasksModel{
     }
 
     async getCompletedTasks(id){
-        const tasks = await db.query('SELECT * from tasks where task_user=$1 AND task_status = "concluido"',{ 
+        const tasks = await db.query("SELECT * from tasks where task_user=$1 AND task_status = 'concluido'",{ 
             bind: [id],
             type: QueryTypes.SELECT
         });
