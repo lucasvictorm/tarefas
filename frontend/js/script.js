@@ -1,6 +1,6 @@
 window.onload = () => {loadTasks()};
 if(!sessionStorage.getItem('username')){
-    window.location.href = './frontend./pages/login.html'
+    window.location.href = './frontend/pages/login.html'
 }
 const usernameTitle = document.getElementById('welcome-name');
 
