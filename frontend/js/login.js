@@ -23,7 +23,7 @@ loginForm.addEventListener('submit', async (event) => {
     if(login.user){
         sessionStorage.setItem('username', login.user.user_name)
         sessionStorage.setItem('id', login.user.user_id)
-        window.location.href = '../index.html'
+        window.location.href = '../../index.html'
     }else{
         errorMessage(login.message)
     }
