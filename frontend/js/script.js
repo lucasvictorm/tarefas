@@ -132,7 +132,7 @@ function createTaskDiv(task){
         buttonDelete.style.display = 'none'
         buttonEdit.style.display = 'none'
     
-        await editTask(divTaskName ,task_name, buttonDone, task_status, task_id)
+        await editTask(divTaskName ,task_name, divTaskButtons, task_status, task_id)
     
     })
 
@@ -208,13 +208,15 @@ async function fetchDeleteTask(id){
     })
 }
 
-async function editTask(divTaskName, task_name, buttonDone, task_status, task_id){
+async function editTask(divTaskName, task_name, divTaskButtons, task_status, task_id){
     divTaskName.innerHTML = ''
     const taskNameInput = createElement('input')
     taskNameInput.value = task_name;
     divTaskName.appendChild(taskNameInput);
     taskNameInput.focus()
-    buttonDone.removeEventListener('click', doneHandler())
+    divTaskButtons.innerHTML = '';
+    const buttonDone = createElement('button', '',  `<span class="material-symbols-outlined">done</span>`)
+    divTaskButtons.appendChild(buttonDone)
 
     await buttonDone.addEventListener('click', async () => {
         const body = {
