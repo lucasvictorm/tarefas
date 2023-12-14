@@ -30,6 +30,7 @@ form{
     display: flex;
     flex-direction: column;
     gap: 2em;
+    position: relative;
 }
 
 .div-input{

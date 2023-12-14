@@ -2,9 +2,10 @@ const loginForm = document.getElementById('login-form');
 
 loginForm.addEventListener('submit', async (event) => {
     event.preventDefault()
+    
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-
+    event.target.style.zIndex = '-1'
     let login = {}
     await fetch('https://api-tarefas-rp0k.onrender.com/login/entrar/', {
         method: 'post',
@@ -26,6 +27,7 @@ loginForm.addEventListener('submit', async (event) => {
         window.location.href = '../../index.html'
     }else{
         errorMessage(login.message)
+        event.target.style.zIndex = '1'
     }
     
     

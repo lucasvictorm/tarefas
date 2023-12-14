@@ -21,8 +21,8 @@ const fetchCadastro = async(username, password, name) => {
    return newUser;
 }
 
-const cadastrar = async (event) => {
-    event.preventDefault()
+const cadastrar = async () => {
+    
     const name = document.getElementById('name');
     const username = document.getElementById('username');
     const password = document.getElementById('password');
@@ -49,6 +49,17 @@ const cadastrar = async (event) => {
     window.location.href = '../../index.html'
 }
 
+async function handleSubmit(event){
+    event.preventDefault()
+    
+    console.log('kk')
+    event.target.style.zIndex = '-1'
+    
+    await cadastrar();
+    event.target.style.zIndex = '1'
+    event.target.addEventListener('submit', handleSubmit)
 
-cadastroForm.addEventListener('submit', cadastrar)
+}
+
+cadastroForm.addEventListener('submit', handleSubmit)
 
