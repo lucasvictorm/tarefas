@@ -50,7 +50,7 @@ addForm.addEventListener('submit', async (event) => {
 
 async function fetchGetTasks(id){
     let tasks = {} 
-    await fetch(`http://localhost:3000/tasks/${id}`)
+    await fetch(`https://api-tarefas-rp0k.onrender.com/tasks/${id}`)
     .then(async (res) => {
         return await res.json()
     })
@@ -181,7 +181,7 @@ async function createTask(task_name){
     const task_user = sessionStorage.getItem('id');
     
     const task = {task_name, task_date, task_user}
-    await fetch('http://localhost:3000/tasks', {
+    await fetch('https://api-tarefas-rp0k.onrender.com/tasks', {
         method: 'post',
         headers: {
             'Content-Type': "application/json",
@@ -193,7 +193,7 @@ async function createTask(task_name){
 }
 
 async function fetchUpdateTask(body, id){
-    await fetch(`http://localhost:3000/tasks/${id}`, {
+    await fetch(`https://api-tarefas-rp0k.onrender.com/tasks/${id}`, {
         method: 'put',
         headers: {
             'Content-Type': 'application/json'
@@ -203,7 +203,7 @@ async function fetchUpdateTask(body, id){
 }
 
 async function fetchDeleteTask(id){
-    await fetch(`http://localhost:3000/tasks/${id}`, {
+    await fetch(`https://api-tarefas-rp0k.onrender.com/tasks/${id}`, {
         method: 'delete',
     })
 }
@@ -235,7 +235,7 @@ async function deleteTask(id){
 
 async function fetchPendentTasks(id){
     
-    const tasksPromise = await fetch(`http://localhost:3000/tasks/pendents/${id}`)
+    const tasksPromise = await fetch(`https://api-tarefas-rp0k.onrender.com/tasks/pendents/${id}`)
     
     const tasks = await tasksPromise.json();
     
@@ -244,7 +244,7 @@ async function fetchPendentTasks(id){
 
 async function fetchCompletedTasks(id){
     
-    const tasksPromise = await fetch(`http://localhost:3000/tasks/completed/${id}`)
+    const tasksPromise = await fetch(`https://api-tarefas-rp0k.onrender.com/tasks/completed/${id}`)
     
     const tasks = await tasksPromise.json();
     

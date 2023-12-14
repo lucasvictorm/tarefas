@@ -6,7 +6,7 @@ loginForm.addEventListener('submit', async (event) => {
     const password = document.getElementById('password').value;
 
     let login = {}
-    await fetch('http://localhost:3000/login/entrar/', {
+    await fetch('https://api-tarefas-rp0k.onrender.com/login/entrar/', {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
