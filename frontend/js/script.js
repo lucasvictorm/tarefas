@@ -4,6 +4,7 @@ if(!sessionStorage.getItem('username')){
 }
 const usernameTitle = document.getElementById('welcome-name');
 
+usernameTitle.innerText = sessionStorage.getItem('username')
 /*const showAllButton = document.getElementById('showAllButton')
 const showPendentsButton = document.getElementById('showPendentsButton')
 showPendentsButton.addEventListener('click', ()=>{
@@ -30,7 +31,7 @@ filterButtons[2].addEventListener('click', (event) => {
 })
 
 
-usernameTitle.innerText = sessionStorage.getItem('username')
+
 
 const logoutDiv = document.querySelector('#logout-div');
 logoutDiv.addEventListener('click', () => {
@@ -41,10 +42,13 @@ logoutDiv.addEventListener('click', () => {
 const addForm = document.querySelector('.add-form');
 addForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    event.target.style.zIndex = '-1'
+    console.log(event.target)
     const task_name = document.getElementById('task-input');
     await createTask(task_name.value)
+    
     task_name.value = ''
-
+    event.target.style.zIndex = '1'
 })
 
 
