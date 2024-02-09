@@ -3,7 +3,7 @@ const db = require('./connection.js');
 
 class TasksModel{
     async getAllTasks(id){
-        const tasks = await db.query('SELECT * from tasks where task_user=$1',  { 
+        const tasks = await db.query('SELECT * from tasks where task_user=$1 order by task_date',  { 
             bind: [id],
             type: QueryTypes.SELECT
         });
@@ -12,7 +12,7 @@ class TasksModel{
     }
 
     async getPendentTasks(id){
-        const tasks = await db.query('SELECT * from tasks where task_user=$1 AND task_status = "pendente"', { 
+        const tasks = await db.query('SELECT * from tasks where task_user=$1 AND task_status = "pendente" order by task_date', { 
             bind: [id],
             type: QueryTypes.SELECT
         });
@@ -20,7 +20,7 @@ class TasksModel{
     }
 
     async getCompletedTasks(id){
-        const tasks = await db.query('SELECT * from tasks where task_user=$1 AND task_status = "concluido"',{ 
+        const tasks = await db.query('SELECT * from tasks where task_user=$1 AND task_status = "concluido" order by task_date',{ 
             bind: [id],
             type: QueryTypes.SELECT
         });
