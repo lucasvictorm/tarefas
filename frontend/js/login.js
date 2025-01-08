@@ -7,7 +7,9 @@ loginForm.addEventListener('submit', async (event) => {
     const password = document.getElementById('password').value;
     event.target.style.zIndex = '-1'
     let login = {}
-    await fetch('https://api-tarefas-rp0k.onrender.com/login/entrar/', {
+    //
+    //https://api-tarefas-rp0k.onrender.com/login/entrar/
+    await fetch('http://172.18.64.1:3000/login/entrar/', {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
